@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Orbitron", sans-serif;
+  
+  --color-neon-blue: #00d2ff;
+  --color-neon-cyan: #3a7bd5;
+  --color-neon-glow: rgba(0, 210, 255, 0.5);
+}
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-white selection:bg-neon-blue selection:text-black;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px var(--color-neon-glow), 0 0 20px var(--color-neon-glow);
+  }
+  
+  .neon-border {
+    box-shadow: 0 0 15px var(--color-neon-glow);
+  }
+
+  .chrome-border {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--color-neon-blue), var(--color-neon-cyan), var(--color-neon-blue)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0.3;
+    animation: border-glow 4s linear infinite;
+  }
+
+  @keyframes border-glow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.5; }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-blue);
+}
